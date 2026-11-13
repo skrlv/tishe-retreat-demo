@@ -9,6 +9,7 @@
   <script type="module" src="app.js"></script>
 </head>
 <body>
+<div class="reading-progress" aria-hidden="true"></div>
 <a class="skip" href="#main">Перейти к содержимому</a>
 <header class="header" id="top">
   <a class="wordmark" href="#top" aria-label="ТИШЕ — на главную">тише<span>✳</span></a>
@@ -17,15 +18,17 @@
 </header>
 <main id="main">
   <section class="hero" aria-labelledby="hero-title">
-    <img src="assets/hero.jpg" alt="Тихое озеро у подножия гор в вечернем свете" fetchpriority="high" width="1920" height="1280">
-    <div class="hero-top"><span>СЕВЕРНЫЙ РЕТРИТ</span><span>ПРИРОДА. ПРОСТОТА. ВЫ.</span></div>
-    <h1 id="hero-title">Дальше от шума.<br><em>Ближе к себе.</em></h1>
-    <div class="hero-bottom"><p>Несколько домов. Много природы.<br>И никакого обязательного плана.</p><a href="#stays" class="round-link" aria-label="Открыть дома для отдыха">↓</a><span class="hero-caption">ВРЕМЯ<br>ЗАМЕДЛИТЬСЯ</span></div>
-    <div class="hero-seal" aria-hidden="true">Т</div>
+    <div class="hero-copy">
+      <div class="hero-top"><span>СЕВЕРНЫЙ РЕТРИТ</span><span>ТИШЕ / 01</span></div>
+      <h1 id="hero-title">Ближе<br>к природе.<br><em>Ближе к себе.</em></h1>
+      <div class="hero-bottom"><p>Несколько домов. Много природы.<br>И время, которое принадлежит вам.</p><a href="#stays" class="hero-link">Выбрать свой дом <span aria-hidden="true">↗</span></a></div>
+      <div class="hero-quiet" aria-hidden="true"><span class="quiet-symbol">✳</span><span>МЕНЬШЕ ШУМА</span><span class="quiet-line"></span><span>БОЛЬШЕ ВАС</span></div>
+    </div>
+    <figure class="hero-visual"><div class="hero-image-frame"><img src="assets/hero.jpg" alt="Тихое озеро у подножия гор в вечернем свете" fetchpriority="high" width="1920" height="1280"><span class="frame-line" aria-hidden="true"></span></div><figcaption><span>ЛЕС. ВОДА. СВОЙ РИТМ.</span><span>НЕ ТОРОПИТЕСЬ ↓</span></figcaption></figure>
   </section>
   <section class="plan" id="plan" aria-labelledby="plan-title">
     <div class="plan-heading"><span class="eyebrow">МАЛЕНЬКИЙ ПЛАН НА БОЛЬШОЙ ВЫДОХ</span><h2 id="plan-title">Когда вам <em>удобно?</em></h2></div>
-    <form id="stay-form" novalidate>
+    <form id="stay-form" novalidate aria-describedby="form-error">
       <div class="booking-fields">
         <label>Заезд<input id="arrival" name="arrival" type="date" required></label>
         <label>Выезд<input id="departure" name="departure" type="date" required></label>
@@ -33,8 +36,8 @@
         <label>Ваш дом<select id="room" name="room"><option value="forest">Лесной дом</option><option value="lake">Дом у воды</option><option value="family">Большой дом</option></select></label>
         <button class="button dark" type="submit">Рассчитать отдых <span aria-hidden="true">↗</span></button>
       </div>
-      <p class="form-note">Демонстрационный расчёт. Доступность домов не проверяется, бронирование не создаётся.</p>
-      <p id="form-error" class="form-error" role="alert"></p>
+      <div class="plan-bottom"><p class="form-note">Демонстрационный расчёт. Доступность домов не проверяется,<br>бронирование не создаётся.</p><p id="stay-preview" class="stay-preview" aria-live="polite"></p></div>
+      <p id="form-error" class="form-error" role="alert" tabindex="-1"></p>
     </form>
   </section>
   <section class="intro section" id="about" aria-labelledby="intro-title">
@@ -42,17 +45,26 @@
     <div><h2 class="display" id="intro-title">Здесь можно<br>просто <em>быть.</em></h2><div class="intro-copy"><p>Просыпаться со светом. Пить кофе, пока он горячий. Слушать, как ветер двигает верхушки деревьев. И наконец никуда не торопиться.</p><p>Мы придумали «Тише» как место для таких дней. Без лишнего, но со всем, что помогает почувствовать себя дома.</p></div></div>
   </section>
   <section class="stays section" id="stays" aria-labelledby="stays-title">
-    <div class="section-head"><div><span class="section-number">02 / ВЫБРАТЬ СВОЙ УГОЛОК</span><h2 class="display" id="stays-title">Снаружи — лес.<br>Внутри — <em>тепло.</em></h2></div><p>Три характера одного отдыха.<br>Найдите тот, что ближе вам.</p></div>
+    <div class="section-head"><div><span class="section-number">02 / ВЫБРАТЬ СВОЙ УГОЛОК</span><h2 class="display" id="stays-title">Три дома.<br>Три способа <em>выдохнуть.</em></h2></div><p>Три характера одного отдыха.<br>Найдите тот, что ближе вам.</p></div>
     <div class="room-grid">
       <article class="room-card"><button class="room-photo" data-room-details="forest" aria-label="Посмотреть Лесной дом"><img src="assets/cabin.jpg" alt="Деревянный дом среди деревьев" width="1100" height="733" loading="lazy"><span class="photo-num">01</span><span class="photo-arrow" aria-hidden="true">↗</span></button><div class="room-meta"><span>ДЛЯ ДВОИХ / 32 М²</span><span>ЛЕС РЯДОМ</span></div><div class="room-title"><h3><button data-room-details="forest">Лесной дом</button></h3><p>11 900 ₽ <small>/ ночь</small></p></div><p class="room-description">Небольшой дом с террасой, мягким светом и видом, который хочется рассматривать.</p></article>
       <article class="room-card offset"><button class="room-photo" data-room-details="lake" aria-label="Посмотреть Дом у воды"><img src="assets/interior.jpg" alt="Светлый спокойный интерьер с натуральными материалами" width="1100" height="733" loading="lazy"><span class="photo-num">02</span><span class="photo-arrow" aria-hidden="true">↗</span></button><div class="room-meta"><span>ДЛЯ ДВОИХ / 44 М²</span><span>ЕЩЁ БОЛЬШЕ СВЕТА</span></div><div class="room-title"><h3><button data-room-details="lake">Дом у воды</button></h3><p>15 900 ₽ <small>/ ночь</small></p></div><p class="room-description">Большие окна, неспешное утро и место для любимой книги у самого света.</p></article>
       <article class="room-card wide"><button class="room-photo" data-room-details="family" aria-label="Посмотреть Большой дом"><img src="assets/suite.jpg" alt="Просторная спальня с мягким светом и уютным текстилем" width="1100" height="733" loading="lazy"><span class="photo-num">03</span><span class="photo-arrow" aria-hidden="true">↗</span></button><div class="wide-copy"><div class="room-meta"><span>ДО ЧЕТЫРЁХ / 68 М²</span><span>БЫТЬ ВМЕСТЕ</span></div><div class="room-title"><h3><button data-room-details="family">Большой дом</button></h3><p>19 900 ₽ <small>/ ночь</small></p></div><p class="room-description">Общий стол, две спальни и достаточно пространства для маленькой компании. Чтобы делиться тишиной с теми, кого любишь.</p><button class="text-button" data-room-details="family">Заглянуть внутрь <span aria-hidden="true">↗</span></button></div></article>
     </div><p class="price-note">Дома, площади, оснащение и цены — часть вымышленной концепции. Фотографии передают настроение и не показывают реальные объекты.</p>
   </section>
-  <section class="rituals" id="rituals" aria-labelledby="rituals-title"><img src="assets/forest.jpg" alt="Солнечные лучи проходят сквозь кроны лесных деревьев" width="1100" height="733" loading="lazy"><div class="ritual-content"><span class="section-number">03 / ПРОСТЫЕ РАДОСТИ</span><h2 class="display" id="rituals-title">Меньше планов.<br><em>Больше жизни.</em></h2><p>Здесь даже маленькие вещи<br>становятся отдельным событием.</p><div class="ritual-list"><div><span>01</span><h3>Утро без будильника</h3><p>Чашка чего-нибудь тёплого и свет в окне.</p></div><div><span>02</span><h3>Прогулка без цели</h3><p>Сворачивать туда, где интереснее.</p></div><div><span>03</span><h3>Вечер без экрана</h3><p>Разговоры, книги и ещё немного тишины.</p></div></div></div></section>
+  <section class="rituals" id="rituals" aria-labelledby="rituals-title"><img src="assets/forest.jpg" alt="Солнечные лучи проходят сквозь кроны лесных деревьев" width="1100" height="733" loading="lazy"><div class="ritual-content"><span class="section-number">03 / ПРОСТЫЕ РАДОСТИ</span><h2 class="display" id="rituals-title">Меньше планов.<br><em>Больше жизни.</em></h2><p>Здесь даже маленькие вещи<br>становятся отдельным событием.</p><div class="rhythm">
+  <div class="rhythm-tabs" role="tablist" aria-label="Выберите время дня" hidden>
+    <button id="rhythm-tab-morning" role="tab" aria-controls="rhythm-morning" data-rhythm="morning">Утро</button>
+    <button id="rhythm-tab-day" role="tab" aria-controls="rhythm-day" data-rhythm="day">День</button>
+    <button id="rhythm-tab-evening" role="tab" aria-controls="rhythm-evening" data-rhythm="evening">Вечер</button>
+  </div>
+  <div class="rhythm-panel" id="rhythm-morning" role="tabpanel" aria-labelledby="rhythm-tab-morning" data-rhythm-panel="morning"><span class="rhythm-time">08:30 / БЕЗ БУДИЛЬНИКА</span><h3>Никуда не опаздывать.</h3><p>Завтрак на террасе. Горячая чашка в ладонях. Первые полчаса дня — без новостей и спешки.</p><span class="rhythm-foot">МАЛЕНЬКИЙ РИТУАЛ 01 / 03</span></div>
+  <div class="rhythm-panel" id="rhythm-day" role="tabpanel" aria-labelledby="rhythm-tab-day" data-rhythm-panel="day"><span class="rhythm-time">14:00 / БЕЗ МАРШРУТА</span><h3>Пойти за любопытством.</h3><p>Лесная тропа, берег озера или скамейка с хорошим видом. Иногда лучший план — оставить место случаю.</p><span class="rhythm-foot">МАЛЕНЬКИЙ РИТУАЛ 02 / 03</span></div>
+  <div class="rhythm-panel" id="rhythm-evening" role="tabpanel" aria-labelledby="rhythm-tab-evening" data-rhythm-panel="evening"><span class="rhythm-time">21:00 / БЕЗ ЭКРАНА</span><h3>Остаться в моменте.</h3><p>Включить тёплый свет. Открыть книгу или начать долгий разговор. Этот вечер не нужно заполнять чем-то ещё.</p><span class="rhythm-foot">МАЛЕНЬКИЙ РИТУАЛ 03 / 03</span></div>
+</div></div></section>
   <section class="moments section" aria-labelledby="moments-title"><div class="section-head"><div><span class="section-number">04 / СОБИРАТЬ МОМЕНТЫ</span><h2 class="display" id="moments-title">Вдохновение<br><em>повсюду.</em></h2></div><span class="gallery-note">МАЛЕНЬКАЯ КОЛЛЕКЦИЯ<br>БОЛЬШИХ ОЩУЩЕНИЙ</span></div><div class="gallery"><figure><img src="assets/lake.jpg" alt="Острые горные вершины под облачным небом" loading="lazy" width="1100" height="733"><figcaption>01 / Смотреть чуть дальше</figcaption></figure><figure><img src="assets/forest.jpg" alt="Зелёный лес в утреннем солнце" loading="lazy" width="1100" height="733"><figcaption>02 / Дышать чуть глубже</figcaption></figure><div class="gallery-quote"><span aria-hidden="true">✳</span><p>Хороший день<br>может быть<br><em>очень простым.</em></p></div></div></section>
   <section class="faq section" aria-labelledby="faq-title"><div><span class="section-number">05 / ПЕРЕД ПАУЗОЙ</span><h2 class="display" id="faq-title">Пара<br><em>вопросов.</em></h2></div><div class="faq-list"><details><summary>Можно ли забронировать дом на этом сайте?</summary><p>Это демонстрационный проект для портфолио. Вы можете выбрать даты и увидеть примерную стоимость, но настоящий заказ, оплата и отправка данных здесь не выполняются.</p></details><details><summary>Что входит в стоимость?</summary><p>В вымышленной концепции стоимость указана за весь дом за ночь: проживание и базовое оснащение. Калькулятор показывает только этот пример, без дополнительных услуг и реальных тарифов.</p></details><details><summary>Можно ли приехать с детьми?</summary><p>Для знакомства с интерфейсом предусмотрен Большой дом на четырёх гостей. Все гости, включая детей, учитываются в выбранном количестве. Реальные правила размещения не установлены.</p></details><details><summary>Где находится «Тише»?</summary><p>Пока только в этой истории. Отель вымышленный: мы показываем, как может выглядеть сайт камерного отдыха на природе. У него нет реального адреса или службы бронирования.</p></details></div></section>
-  <section class="closing"><span class="eyebrow">ПУСТЬ СЛЕДУЮЩИЙ ВЫДОХ БУДЕТ ДЛИННЕЕ</span><h2>Вам пора<br><em>немного тише.</em></h2><a class="button light" href="#plan">Найти время для себя <span aria-hidden="true">↗</span></a><div class="closing-word" aria-hidden="true">тише<span>✳</span></div></section>
+  <section class="closing"><span class="eyebrow">ПУСТЬ СЛЕДУЮЩИЙ ВЫДОХ БУДЕТ ДЛИННЕЕ</span><h2>Побудьте<br><em>на своей стороне.</em></h2><a class="button light" href="#plan">Найти время для себя <span aria-hidden="true">↗</span></a><div class="closing-word" aria-hidden="true">тише<span>✳</span></div></section>
 </main>
 <footer><p>© ТИШЕ — концепция северного ретрита</p><p>Демонстрационный проект. Отель вымышленный.<br>Без реального бронирования и оплаты.</p><a href="https://github.com/skrlv/tishe-retreat-demo" target="_blank" rel="noopener noreferrer">Проект на GitHub ↗</a><a href="#top">Наверх ↑</a></footer>
 <dialog id="room-dialog" aria-labelledby="room-dialog-title"><button class="dialog-close" aria-label="Закрыть описание дома" autofocus>×</button><img id="room-dialog-image" src="assets/cabin.jpg" alt=""><div class="dialog-copy"><span class="eyebrow" id="room-dialog-meta"></span><h2 id="room-dialog-title"></h2><p id="room-dialog-text"></p><ul id="room-dialog-features"></ul><p class="dialog-price" id="room-dialog-price"></p><button class="button dark" id="choose-room">Выбрать этот дом <span aria-hidden="true">↗</span></button><small>Вымышленный объект. Фотография — иллюстрация настроения.</small></div></dialog>

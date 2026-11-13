@@ -22,7 +22,9 @@ test('guest capacity and guest values are enforced', () => {
   for (const guests of [0, 3, 4, 5, 1.5, 'bad', '']) assert.throws(() => calculateStay({ ...base, guests }));
   assert.equal(calculateStay({ ...base, roomId:'family', guests:4 }).total,59700);
 });
-test('unknown rooms do not produce a price', () => assert.throws(() => calculateStay({ ...base, roomId:'other' })));
+test('unknown and inherited room keys do not produce a price', () => {
+  for (const roomId of ['other', 'toString', 'constructor', '__proto__']) assert.throws(() => calculateStay({ ...base, roomId }));
+});
 test('date label input is local calendar date rather than UTC instant', () => {
   assert.equal(localToday(new Date(2026, 0, 2, 0, 5)), '2026-01-02');
 });

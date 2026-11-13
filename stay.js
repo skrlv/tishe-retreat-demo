@@ -21,7 +21,7 @@ export function addDays(value, days) {
   return new Date(time + days * DAY).toISOString().slice(0, 10);
 }
 export function calculateStay({ arrival, departure, guests, roomId, today = localToday() }) {
-  const room = ROOMS[roomId];
+  const room = Object.hasOwn(ROOMS, roomId) ? ROOMS[roomId] : null;
   if (!room) throw new Error('Выберите дом из списка.');
   const start = parseDay(arrival), end = parseDay(departure), present = parseDay(today);
   if (start === null || end === null || present === null) throw new Error('Укажите корректные даты заезда и выезда.');
